@@ -33,17 +33,6 @@ Progetto Next.js per la lezione 3 del corso.
 5. Il server genera la risposta dell'agente
 6. Il frontend aggiorna badge agente e messaggio
 
-## Stato attuale
-
-Lo scaffold e pronto, ma in questo ambiente non e stato possibile eseguire:
-
-- `npm install`
-- `npm run dev`
-- build
-- deploy
-
-perche `node`, `npm` e gli strumenti git di sistema non sono installati.
-
 ## Percorso file utili
 
 - Prompt finali: `../Final_Prompts/`
