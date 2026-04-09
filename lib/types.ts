@@ -9,6 +9,11 @@ export type ChatMessage = {
   agent?: AgentId;
 };
 
+export type ChatHistoryEntry = {
+  role: ChatRole;
+  content: string;
+};
+
 export type ChatRequestBody = {
   message: string;
   history: ChatMessage[];
@@ -19,4 +24,3 @@ export type RoutingDecision = {
   agent: AgentId;
   reason: string;
 };
-

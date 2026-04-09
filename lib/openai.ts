@@ -1,5 +1,3 @@
-import { openai } from "@ai-sdk/openai";
-
 export function requireOpenAiKey() {
   const apiKey = process.env.OPENAI_API_KEY;
 
@@ -12,14 +10,10 @@ export function requireOpenAiKey() {
   return apiKey;
 }
 
-export const managerModel = openai(
-  (process.env.OPENAI_MANAGER_MODEL || "gpt-4o-mini") as
-    | "gpt-4o-mini"
-    | "gpt-4.1-mini"
-);
+export function getManagerModel() {
+  return process.env.OPENAI_MANAGER_MODEL || "gpt-4o-mini";
+}
 
-export const agentModel = openai(
-  (process.env.OPENAI_AGENT_MODEL || "gpt-4.1-mini") as
-    | "gpt-4o-mini"
-    | "gpt-4.1-mini"
-);
+export function getAgentModel() {
+  return process.env.OPENAI_AGENT_MODEL || "gpt-4.1-mini";
+}
