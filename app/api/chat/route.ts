@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { generateAgentReply, routeConversation } from "@/lib/chat";
+import { routeConversation } from "@/lib/chat";
 import { requireOpenAiKey } from "@/lib/openai";
 import type { ChatRequestBody } from "@/lib/types";
 
@@ -22,16 +22,7 @@ export async function POST(request: Request) {
       history: body.history || []
     });
 
-    const reply = await generateAgentReply({
-      agent: decision.agent,
-      message: body.message,
-      history: body.history || []
-    });
-
-    return NextResponse.json({
-      ...reply,
-      reason: decision.reason
-    });
+    return NextResponse.json(decision);
   } catch (error) {
     const message =
       error instanceof Error ? error.message : "Unexpected server error";

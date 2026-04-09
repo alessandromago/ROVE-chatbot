@@ -43,6 +43,7 @@ export async function routeConversation(input: {
   return result.object;
 }
 
+// Reserved for Sprint 3+ when specialist-agent generation becomes active.
 export async function generateAgentReply(input: {
   agent: AgentId;
   message: string;
@@ -71,4 +72,3 @@ export async function generateAgentReply(input: {
     message: response.text
   };
 }
-

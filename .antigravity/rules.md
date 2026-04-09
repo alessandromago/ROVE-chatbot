@@ -6,24 +6,29 @@
 ROVE multi-agent chatbot for L'Astrolabio — Lesson 3 MVP.
 
 ## 2. Tech Stack
-- Next.js 15.x with App Router
-- React 19.x
+- Next.js 14.2.x with App Router
+- React 18.3.x
 - Tailwind CSS 3.4.x
 - TypeScript strict
-- Vercel AI SDK (`ai` + `@ai-sdk/openai`)
+- Vercel AI SDK (`ai` 3.x)
 - OpenAI as the LLM provider
 
 ## 3. Architecture
-Every user message triggers two server-side LLM calls:
+Target architecture:
+Every user message will eventually trigger two server-side LLM calls:
 1. **Manager** — called in structured object mode (fast model: `gpt-4o-mini`). Returns `{ agent, reason }`. The Manager NEVER generates user-facing text.
 2. **Specialist Agent** — called with streaming (full model: `gpt-4.1-mini`). Returns the user-facing reply.
 
-The Manager only routes. The agent only responds. They never cross roles.
+Current implementation checkpoint:
+- Up to Sprint 2, only Manager routing is active
+- The Manager only routes
+- Specialist agent generation is reserved for Sprint 3+
 
 ## 4. API Contract
 Single API route: `POST /api/chat`.
 Accepts: `{ message, currentAgent, history }`.
-Returns: a streaming response. First line is JSON metadata `{"agent":"...","color":"..."}`, rest is streamed LLM text.
+Sprint 2 response: JSON only, `{ "agent": "...", "reason": "..." }`.
+Sprint 3+ response: streaming response where the first line is JSON metadata `{"agent":"...","color":"..."}` and the remaining stream is the LLM text.
 
 ## 5. File Structure
 ```
